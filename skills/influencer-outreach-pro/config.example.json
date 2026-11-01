@@ -1,0 +1,50 @@
+{
+  "_comment": "Example config for The E-Commerce Seller plugin. The influencer_outreach section is added by the Influencer Outreach Pro (skill #14).",
+  "version": 1,
+  "store": {"brand_name": "", "tagline": "", "website_url": "", "primary_category": ""},
+  "platforms_enabled": {"shopify": true, "amazon": false, "etsy": false, "ebay": false, "walmart": false, "tiktok_shop": false},
+  "brand_voice": {"archetype": "", "tone": "", "vocabulary_use": [], "vocabulary_avoid": [], "voice_examples": [], "signer_names": [], "captured_via": "questionnaire", "last_updated": ""},
+  "audience": {"description": "", "pain_points": [], "aspirations": []},
+  "output_preferences": {"output_folder": "", "filename_pattern": "{product_name}_descriptions_{date}", "include_character_counts": true, "variants_per_platform": 2},
+  "influencer_outreach": {
+    "_comment": "Settings specific to the Influencer Outreach Pro (skill #14).",
+    "buyer_signer_first_name": "",
+    "buyer_signer_role": "Founder",
+    "sender_email": "",
+    "platforms_active": {
+      "instagram": true,
+      "tiktok": true,
+      "youtube": true,
+      "x_twitter": false,
+      "linkedin": false,
+      "pinterest": false
+    },
+    "tier_rate_overrides": {
+      "_comment": "Override default rate ranges per tier if needed. Values in USD per post.",
+      "nano":     {"gifted": 0, "hybrid_min": 25,  "hybrid_max": 150,  "paid_min": 50,   "paid_max": 200},
+      "micro":    {"gifted": 0, "hybrid_min": 150, "hybrid_max": 800,  "paid_min": 300,  "paid_max": 1500},
+      "mid_tier": {"gifted": 0, "hybrid_min": 800, "hybrid_max": 3500, "paid_min": 1500, "paid_max": 8000},
+      "macro":    {"gifted": 0, "hybrid_min": 3500,"hybrid_max": 15000,"paid_min": 5000, "paid_max": 50000}
+    },
+    "follow_up_cadence_days": {
+      "nano":     {"variant_a": 7, "variant_b": 14, "variant_c": 28},
+      "micro":    {"variant_a": 7, "variant_b": 14, "variant_c": 28},
+      "mid_tier": {"variant_a": 10, "variant_b": 21, "variant_c": 40},
+      "macro":    {"variant_a": 14, "variant_b": 30, "variant_c": 60}
+    },
+    "default_framework_by_tier": {
+      "nano": "gifted_only",
+      "micro": "hybrid",
+      "mid_tier": "hybrid",
+      "macro": "paid"
+    },
+    "default_usage_rights": "organic + 30-day brand repost rights",
+    "default_exclusivity": "none",
+    "enable_disclosure_compliance_layer": true,
+    "blacklist_handles": [],
+    "campaign_budget_cap_usd": null,
+    "max_creators_per_campaign": 50
+  },
+  "connectors_known": {"shopify": "unknown", "klaviyo": "unknown", "meta_ads": "unknown", "canva": "unknown", "amazon": "unknown", "gmail": "unknown"},
+  "api_keys": {"fal_ai": ""}
+}

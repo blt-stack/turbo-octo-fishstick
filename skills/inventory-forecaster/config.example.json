@@ -1,0 +1,86 @@
+{
+  "_comment": "Example config for The E-Commerce Seller plugin. The inventory_forecasting section is added by the Inventory Forecaster (skill #12).",
+  "version": 1,
+  "store": {
+    "brand_name": "",
+    "tagline": "",
+    "website_url": "",
+    "primary_category": ""
+  },
+  "platforms_enabled": {
+    "shopify": true,
+    "amazon": false,
+    "etsy": false,
+    "ebay": false,
+    "walmart": false,
+    "tiktok_shop": false
+  },
+  "brand_voice": {
+    "archetype": "",
+    "tone": "",
+    "vocabulary_use": [],
+    "vocabulary_avoid": [],
+    "voice_examples": [],
+    "signer_names": [],
+    "captured_via": "questionnaire",
+    "last_updated": ""
+  },
+  "audience": {
+    "description": "",
+    "pain_points": [],
+    "aspirations": []
+  },
+  "output_preferences": {
+    "output_folder": "",
+    "filename_pattern": "{product_name}_descriptions_{date}",
+    "include_character_counts": true,
+    "variants_per_platform": 2
+  },
+  "inventory_forecasting": {
+    "_comment": "Settings specific to the Inventory Forecaster (skill #12).",
+    "defaults": {
+      "safety_stock_days": 14,
+      "reorder_window_days": 14,
+      "reorder_cycle_days": 60,
+      "safety_stock_mode": "days_based"
+    },
+    "safety_stock_overrides": {
+      "hero_skus": 21,
+      "high_margin_skus": 21,
+      "low_margin_skus": 7
+    },
+    "service_level_target": 0.95,
+    "method_overrides": {
+      "_comment": "Map SKU -> forced method, e.g., 'RS-POUR-OVER-001': 'holt_winters'"
+    },
+    "sku_overrides": {
+      "_example": {
+        "RS-POUR-OVER-001": {
+          "reorder_cycle_days": 45,
+          "safety_stock_days": 21
+        }
+      }
+    },
+    "sku_aliases": {
+      "_example": {
+        "RS-POUR-OVER-001": ["RS-001", "B0CXXX1234", "ETSY-1234567"]
+      }
+    },
+    "disable_seasonality_detection": false,
+    "discontinued_skus": [],
+    "suppress_triggers_for_skus": [],
+    "suppress_triggers_for_suppliers": [],
+    "drop_ship_skus": []
+  },
+  "connectors_known": {
+    "shopify": "unknown",
+    "klaviyo": "unknown",
+    "meta_ads": "unknown",
+    "canva": "unknown",
+    "amazon": "unknown",
+    "gmail": "unknown"
+  },
+  "api_keys": {
+    "fal_ai": ""
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "_comment": "Example config for The E-Commerce Seller plugin. The supplier_negotiation section is added by the Supplier Negotiation Assistant (skill #11).",
+  "version": 1,
+  "store": {
+    "brand_name": "",
+    "tagline": "",
+    "website_url": "",
+    "primary_category": ""
+  },
+  "platforms_enabled": {
+    "shopify": true,
+    "amazon": false,
+    "etsy": false,
+    "ebay": false,
+    "walmart": false,
+    "tiktok_shop": false
+  },
+  "brand_voice": {
+    "archetype": "",
+    "tone": "",
+    "vocabulary_use": [],
+    "vocabulary_avoid": [],
+    "voice_examples": [],
+    "signer_names": [],
+    "captured_via": "questionnaire",
+    "last_updated": ""
+  },
+  "audience": {
+    "description": "",
+    "pain_points": [],
+    "aspirations": []
+  },
+  "output_preferences": {
+    "output_folder": "",
+    "filename_pattern": "{product_name}_descriptions_{date}",
+    "include_character_counts": true,
+    "variants_per_platform": 2
+  },
+  "supplier_negotiation": {
+    "_comment": "Settings specific to the Supplier Negotiation Assistant (skill #11).",
+    "buyer_signer": {
+      "first_name": "",
+      "last_name": "",
+      "role_or_title": "",
+      "email": ""
+    },
+    "default_destination": {
+      "city": "",
+      "country": "",
+      "shipping_terms_preferred": "FOB"
+    },
+    "letter_types_active": {
+      "moq_reduction": true,
+      "pricing_tier": true,
+      "payment_terms": true,
+      "sample_request": true,
+      "dispute": true
+    },
+    "regional_playbooks_active": {
+      "china": true,
+      "india": true,
+      "vietnam": true,
+      "north_america": true,
+      "eu": true
+    },
+    "follow_up_defaults_days": {
+      "china": 3,
+      "india": 2,
+      "vietnam": 3,
+      "north_america": 2,
+      "eu": 4
+    },
+    "memory_settings": {
+      "auto_stage_transitions": true,
+      "warn_on_holiday_send_window": true,
+      "warn_on_pending_unresolved_letter": true
+    },
+    "rfq_defaults": {
+      "default_supplier_count": 5,
+      "default_response_window_days": 14,
+      "default_currency": "USD"
+    }
+  },
+  "connectors_known": {
+    "shopify": "unknown",
+    "klaviyo": "unknown",
+    "meta_ads": "unknown",
+    "canva": "unknown",
+    "amazon": "unknown",
+    "gmail": "unknown"
+  },
+  "api_keys": {
+    "fal_ai": ""
+  }
+}

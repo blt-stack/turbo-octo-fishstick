@@ -1,0 +1,63 @@
+{
+  "_comment": "Example config for The E-Commerce Seller plugin. The daily_store_digest section is added by the Daily Store Digest (skill #15).",
+  "version": 1,
+  "store": {"brand_name": "", "tagline": "", "website_url": "", "primary_category": ""},
+  "platforms_enabled": {"shopify": true, "amazon": false, "etsy": false, "ebay": false, "walmart": false, "tiktok_shop": false},
+  "brand_voice": {"archetype": "", "tone": "", "vocabulary_use": [], "vocabulary_avoid": [], "voice_examples": [], "signer_names": [], "captured_via": "questionnaire", "last_updated": ""},
+  "audience": {"description": "", "pain_points": [], "aspirations": []},
+  "output_preferences": {"output_folder": "", "filename_pattern": "{product_name}_descriptions_{date}", "include_character_counts": true, "variants_per_platform": 2},
+  "daily_store_digest": {
+    "_comment": "Settings specific to the Daily Store Digest (skill #15).",
+    "timezone": "America/New_York",
+    "founder_style": "narrative",
+    "data_sources": {
+      "shopify": {"enabled": true, "fallback_to_csv": true},
+      "klaviyo": {"enabled": true, "fallback_to_csv": true},
+      "meta_ads": {"enabled": true, "fallback_to_csv": true},
+      "ga4": {"enabled": true, "fallback_to_csv": true}
+    },
+    "anomaly_detection": {
+      "baseline_days": 7,
+      "weekday_aware_baseline": false,
+      "notable_threshold_sigma": 1.0,
+      "anomaly_threshold_sigma": 2.0,
+      "critical_threshold_sigma": 3.0,
+      "show_confidence_intervals": false,
+      "disabled_metrics": []
+    },
+    "fallback_rules": {
+      "orders.count": {
+        "low_volume_threshold": 5,
+        "flag_if_drop_pct_below": 0.50,
+        "flag_if_zero_when_baseline_nonzero": true
+      },
+      "revenue.net_usd": {
+        "low_volume_threshold": 100,
+        "flag_if_drop_pct_below": 0.40
+      },
+      "list_growth.net_change": {
+        "low_volume_threshold": 5,
+        "flag_if_drop_pct_below": 0.50
+      }
+    },
+    "break_even_roas": 2.0,
+    "fatigue_threshold_frequency": 3.5,
+    "pause_candidate_min_days_underperforming": 3,
+    "skip_weekends": false,
+    "known_promo_dates": [],
+    "holiday_calendar": {
+      "us": ["2026-01-01", "2026-05-25", "2026-07-04", "2026-09-07", "2026-11-26", "2026-11-27", "2026-12-24", "2026-12-25", "2026-12-31"]
+    },
+    "surface_forecast_method_changes": false,
+    "cross_skill_integrations": {
+      "inventory": true,
+      "suppliers": true,
+      "bundles": true,
+      "influencers": true
+    },
+    "max_suggested_actions": 5,
+    "auto_schedule_recommended": true
+  },
+  "connectors_known": {"shopify": "unknown", "klaviyo": "unknown", "meta_ads": "unknown", "canva": "unknown", "amazon": "unknown", "gmail": "unknown"},
+  "api_keys": {"fal_ai": ""}
+}
