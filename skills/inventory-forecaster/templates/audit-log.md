@@ -6,7 +6,7 @@ Every forecast run logs which method was chosen per SKU and why. The buyer can r
 
 - **Single mode**: in the .docx output under "METHOD CHOICE + RATIONALE"
 - **Bulk mode**: as Sheet 5 ("Method Audit Log") in the .xlsx
-- **Forecast run record**: `<plugin-root>/.cache/forecast_runs/{YYYY-MM-DD-HHMM}.json` — full audit per run, including per-SKU diagnostics
+- **Forecast run record**: `~/.the-ecommerce-seller/cache/forecast_runs/{YYYY-MM-DD-HHMM}.json` — full audit per run, including per-SKU diagnostics
 
 ## What gets logged per SKU
 
@@ -72,7 +72,7 @@ The warnings surface in the .xlsx as a "Warnings" column with one row per active
 The full audit lives at:
 
 ```
-<plugin-root>/.cache/forecast_runs/{YYYY-MM-DD-HHMM}.json
+~/.the-ecommerce-seller/cache/forecast_runs/{YYYY-MM-DD-HHMM}.json
 ```
 
 Schema:

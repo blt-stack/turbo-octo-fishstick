@@ -107,7 +107,7 @@ The buyer can scan for low-confidence rows + override methods next run if needed
 
 ## Reorder triggers written
 
-To `<plugin-root>/.cache/reorder_triggers/2026-04-15.json`:
+To `~/.the-ecommerce-seller/cache/reorder_triggers/2026-04-15.json`:
 
 ```
 8 triggers written:

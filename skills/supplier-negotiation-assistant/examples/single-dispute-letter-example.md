@@ -123,7 +123,7 @@ Option 3: "This is the first issue we've seen across our work together, and we'r
 
 ### SUPPLIER MEMORY WRITTEN
 
-Updated `<plugin-root>/.cache/suppliers/shenzhen-stoneworks-co-ltd-cindy-chen.json`:
+Updated `~/.the-ecommerce-seller/cache/suppliers/shenzhen-stoneworks-co-ltd-cindy-chen.json`:
 
 - Added letter to `letters_sent`:
   - type: dispute

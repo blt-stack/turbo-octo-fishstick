@@ -158,7 +158,7 @@ The skill enforces this band when generating AOV-Lift bundles.
 
 ## Bundle cache write
 
-Written as `.cache/bundles/pour-over-filters-mug-free-shipping-add-on.json` with:
+Written as `~/.the-ecommerce-seller/cache/bundles/pour-over-filters-mug-free-shipping-add-on.json` with:
 
 ```json
 {

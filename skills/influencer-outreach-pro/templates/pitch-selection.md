@@ -59,7 +59,7 @@ The ladder positions the brand as flexible and partnership-savvy.
 
 ## Reading the bundle cache
 
-The skill checks `<plugin-root>/.cache/bundles/{slug}.json` (written by skill #13) for bundles. For each bundle:
+The skill checks `~/.the-ecommerce-seller/cache/bundles/{slug}.json` (written by skill #13) for bundles. For each bundle:
 
 - `bundle_type_primary`: prefer "complementary" and "starter_kit" bundles for influencer pitches
 - `use_case_label`: matches the creator's content themes

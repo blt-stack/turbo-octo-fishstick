@@ -6,16 +6,16 @@ The "What Needs Attention Today" section reads from four cross-skill caches writ
 
 | Cache | Writer skill | What gets surfaced |
 |---|---|---|
-| `.cache/reorder_triggers/{date}.json` | #12 Inventory Forecaster | SKUs approaching stockout |
-| `.cache/suppliers/{*}.json` | #11 Supplier Negotiation Assistant | Overdue supplier responses |
-| `.cache/bundles/{*}.json` | #13 Bundle Builder | Undeployed bundles ranked by score |
-| `.cache/influencers/{*}.json` | #14 Influencer Outreach Pro | Pending influencer follow-ups |
+| `~/.the-ecommerce-seller/cache/reorder_triggers/{date}.json` | #12 Inventory Forecaster | SKUs approaching stockout |
+| `~/.the-ecommerce-seller/cache/suppliers/{*}.json` | #11 Supplier Negotiation Assistant | Overdue supplier responses |
+| `~/.the-ecommerce-seller/cache/bundles/{*}.json` | #13 Bundle Builder | Undeployed bundles ranked by score |
+| `~/.the-ecommerce-seller/cache/influencers/{*}.json` | #14 Influencer Outreach Pro | Pending influencer follow-ups |
 
 Plus optional:
 
 | Cache | Writer skill | What gets surfaced |
 |---|---|---|
-| `.cache/forecast_runs/{date}.json` | #12 Inventory Forecaster | Recent forecast method changes (when a SKU swapped to a different forecasting method or gained seasonality detection) |
+| `~/.the-ecommerce-seller/cache/forecast_runs/{date}.json` | #12 Inventory Forecaster | Recent forecast method changes (when a SKU swapped to a different forecasting method or gained seasonality detection) |
 
 ## Cache 1: Inventory reorder triggers (skill #12)
 
@@ -58,7 +58,7 @@ For each surfaced SKU, the digest line includes:
 
 ### Cross-reference with supplier cache
 
-When a SKU has a known primary supplier (from `.cache/sku_to_supplier.json`), the digest pulls:
+When a SKU has a known primary supplier (from `~/.the-ecommerce-seller/cache/sku_to_supplier.json`), the digest pulls:
 
 - Supplier's current lead time
 - Supplier's MOQ

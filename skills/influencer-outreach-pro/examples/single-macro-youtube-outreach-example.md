@@ -171,7 +171,7 @@ Note: Standard for Paid + YouTube. Manager will confirm James's standard disclos
 
 ## Influencer memory cache write
 
-Path: `<plugin-root>/.cache/influencers/jameshoffmann.json`
+Path: `~/.the-ecommerce-seller/cache/influencers/jameshoffmann.json`
 
 ```json
 {

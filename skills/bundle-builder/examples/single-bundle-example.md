@@ -90,7 +90,7 @@ All tiers pass the 25% margin floor.
 >
 > CTA: See the Bundle
 
-(Testimonial pulled from .cache/testimonials/river-stone-pour-over.json)
+(Testimonial pulled from ~/.the-ecommerce-seller/cache/testimonials/river-stone-pour-over.json)
 
 **Ad headlines (3 variants)**
 - Three pieces. One ritual.
@@ -121,7 +121,7 @@ All tiers pass the 25% margin floor.
 
 ## Bundle cache write
 
-To `<plugin-root>/.cache/bundles/complete-coffee-brewing-set.json`:
+To `~/.the-ecommerce-seller/cache/bundles/complete-coffee-brewing-set.json`:
 
 ```json
 {

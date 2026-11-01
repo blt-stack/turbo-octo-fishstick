@@ -115,7 +115,7 @@ When to use: when testimonial cache (from skill #10) has a strong relevant quote
 
 ## Pulling testimonials from cache
 
-The skill reads `<plugin-root>/.cache/testimonials/{product-identifier}.json` (written by skill #10) for each SKU in the bundle:
+The skill reads `~/.the-ecommerce-seller/cache/testimonials/{product-identifier}.json` (written by skill #10) for each SKU in the bundle:
 
 1. For each SKU, load testimonials
 2. Filter to quotes tagged `use_cases: ["landing_page_testimonial"]`

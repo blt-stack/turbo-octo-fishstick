@@ -32,7 +32,7 @@ Writes Amazon Standard A+ Content for Brand Registered sellers. Picks the best m
 
 ## Step 1: First-run check
 
-Look for `<plugin-root>/.config/the-ecommerce-seller.config.json`. If missing or incomplete, run the onboarding flow from `../product-description-writer/templates/onboarding.md`.
+Look for `~/.the-ecommerce-seller/config/the-ecommerce-seller.config.json`. If missing or incomplete, run the onboarding flow from `../product-description-writer/templates/onboarding.md`.
 
 After loading config, **explicitly check for `config.api_keys.fal_ai`**. If absent or empty, note that the skill will fall back to Canva briefs for this run. Tell the buyer (once) that they can add a Fal AI key any time via "update my plugin config" → image generation kicks in automatically on the next run.
 
@@ -74,7 +74,7 @@ If anything's missing, ask one round of targeted questions before drafting.
 
 ## Step 4: Check the keyword cache
 
-Use `scripts/keyword_cache_reader.py` to check `<plugin-root>/.cache/keywords/{product-identifier}.json`. Same lookup logic as skill #3: try Shopify handle → ASIN → slugified product name.
+Use `scripts/keyword_cache_reader.py` to check `~/.the-ecommerce-seller/cache/keywords/{product-identifier}.json`. Same lookup logic as skill #3: try Shopify handle → ASIN → slugified product name.
 
 If keywords found, capture the top 6-10 ranked keywords. They get woven into:
 - Module headlines (1-2 per module)

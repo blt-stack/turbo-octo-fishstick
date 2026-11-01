@@ -29,11 +29,11 @@ Writes platform-ready product descriptions across Shopify, Amazon, Etsy, eBay, W
 
 ## Step 1: First-run check
 
-Before doing anything else, check whether the buyer has completed onboarding. Look for a `config.json` file in the parent plugin directory:
+Before doing anything else, check whether the buyer has completed onboarding. Look for the shared config file in the plugin's data folder:
 
-**Expected location:** `<plugin-root>/.config/the-ecommerce-seller.config.json`
+**Expected location:** `~/.the-ecommerce-seller/config/the-ecommerce-seller.config.json`
 
-Where `<plugin-root>` is the directory containing `plugin.json` (one level above the `skills/` folder).
+This folder sits outside the plugin so setup and saved data survive plugin updates. If the buyer set `THE_ECOMMERCE_SELLER_DATA`, the scripts use that folder instead — run `python scripts/config_loader.py` (or call `config_path()`) to see the exact path rather than guessing.
 
 **If `config.json` exists and is complete** (all required fields present), load it and skip to Step 2.
 

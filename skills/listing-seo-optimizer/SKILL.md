@@ -25,14 +25,14 @@ Scores existing listings, researches keywords, and rewrites listing fields for o
 5. **Score the existing listing.** Apply the audit rubric across keyword coverage, title strength, bullet quality, backend terms, and completeness. Per-platform.
 6. **Rewrite listing fields.** Produce optimized title, bullets, description, backend search terms, meta tags, URL handle, alt text, attributes — per platform the buyer sells on.
 7. **Render output.** Single mode → polished `.docx` per product. Bulk → `.xlsx` workbook with audit scores and rewrites per row.
-8. **Write keyword artifact.** Save `keywords.json` to `<plugin-root>/.cache/keywords/{product-id}.json` so the Product Description Writer picks it up automatically.
+8. **Write keyword artifact.** Save `keywords.json` to `~/.the-ecommerce-seller/cache/keywords/{product-id}.json` so the Product Description Writer picks it up automatically.
 9. **Report back.** File paths, top-line score, and a one-line next-step suggestion.
 
 ---
 
 ## Step 1: First-run check
 
-Look for the shared plugin config at `<plugin-root>/.config/the-ecommerce-seller.config.json` (where `<plugin-root>` is the directory containing `plugin.json`).
+Look for the shared plugin config at `~/.the-ecommerce-seller/config/the-ecommerce-seller.config.json`. This folder sits outside the plugin so setup and saved data survive plugin updates. If the buyer set `THE_ECOMMERCE_SELLER_DATA`, the scripts use that folder instead — run `python scripts/config_loader.py` (or call `config_path()`) to see the exact path rather than guessing.
 
 If the config exists and is complete, load it. If missing or incomplete, run the onboarding flow defined in `../product-description-writer/templates/onboarding.md`. The config is shared across all skills in this plugin — same brand voice, same platforms, same audience. The buyer onboards once.
 
@@ -220,7 +220,7 @@ Bulk runs should batch products (default 10 per batch) using `scripts/bulk_proce
 
 After every successful run, write a `keywords.json` to the shared cache:
 
-**Path:** `<plugin-root>/.cache/keywords/{product-identifier}.json`
+**Path:** `~/.the-ecommerce-seller/cache/keywords/{product-identifier}.json`
 
 Where `{product-identifier}` is, in priority order:
 1. The Shopify product handle (preferred — stable and human-readable)

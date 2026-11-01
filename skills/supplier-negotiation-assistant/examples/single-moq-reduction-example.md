@@ -107,7 +107,7 @@ Option 3: "Building stable orders together over time is what we're hoping for...
 ### SUPPLIER MEMORY WRITTEN
 
 The skill created a new supplier file at:
-`<plugin-root>/.cache/suppliers/jingdezhen-ceramics-co-ltd-cindy-chen.json`
+`~/.the-ecommerce-seller/cache/suppliers/jingdezhen-ceramics-co-ltd-cindy-chen.json`
 
 With:
 - Supplier_id: jingdezhen-ceramics-co-ltd-cindy-chen

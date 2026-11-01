@@ -35,7 +35,7 @@ Drafts personalized cold DMs and emails to creators across 6 platforms. 4 tiers 
 
 ## Step 1: First-run check
 
-Look for `<plugin-root>/.config/the-ecommerce-seller.config.json`. If missing, run onboarding from `../product-description-writer/templates/onboarding.md`. Use `scripts/config_loader.py`.
+Look for `~/.the-ecommerce-seller/config/the-ecommerce-seller.config.json`. If missing, run onboarding from `../product-description-writer/templates/onboarding.md`. Use `scripts/config_loader.py`.
 
 ---
 
@@ -58,7 +58,7 @@ For each creator, two paths:
 
 ### Path A: Known creator (from memory cache)
 
-Look up `<plugin-root>/.cache/influencers/{handle}.json` via `scripts/influencer_memory.py`. The cache holds:
+Look up `~/.the-ecommerce-seller/cache/influencers/{handle}.json` via `scripts/influencer_memory.py`. The cache holds:
 
 - Handle, platform, follower count, tier classification
 - Display name, real name if known
@@ -362,7 +362,7 @@ The skill always produces outreach — connectors enrich.
 - `templates/outreach-craft.md` — 6-part outreach skeleton + length targets
 - `templates/follow-up-cadence.md` — 3-variant follow-up framework + tier-based timing
 - `templates/disclosure-compliance.md` — FTC + platform disclosure requirements per relationship type
-- `templates/influencer-memory.md` — schema for `.cache/influencers/{handle}.json`
+- `templates/influencer-memory.md` — schema for `~/.the-ecommerce-seller/cache/influencers/{handle}.json`
 - `templates/deliverables-structure.md` — common deliverables packages + usage rights
 - `scripts/config_loader.py` — shared config loader
 - `scripts/influencer_memory.py` — per-influencer relationship cache writer/reader

@@ -8,13 +8,15 @@ when the buyer asks "what supplier letters do I need to send?"
 Schema documented in templates/reorder-triggers.md.
 """
 
+import os
+import shutil
 import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 
-CACHE_SUBDIR = ".cache/reorder_triggers"
+CACHE_SUBDIR = "cache/reorder_triggers"
 
 
 def find_plugin_root(start: Path | None = None) -> Path:
@@ -26,9 +28,57 @@ def find_plugin_root(start: Path | None = None) -> Path:
         f"Could not locate plugin root walking up from {here}."
     )
 
+# --- Permanent data folder (shared by every script in this plugin) ---------
+# Config and caches live outside the plugin folder: plugin updates install
+# into a new version folder, which would otherwise reset setup and wipe
+# everything the skills have learned. Override with THE_ECOMMERCE_SELLER_DATA.
+
+DATA_DIR_ENV = "THE_ECOMMERCE_SELLER_DATA"
+DEFAULT_DATA_DIR = Path.home() / ".the-ecommerce-seller"
+PLUGIN_NAME = "the-ecommerce-seller"
+_LEGACY_DIRS = ((".config", "config"), (".cache", "cache"))
+
+
+def data_root() -> Path:
+    """Return the permanent data folder, copying in data from older
+    in-plugin locations the first time it is used."""
+    override = os.environ.get(DATA_DIR_ENV, "").strip()
+    root = Path(override).expanduser() if override else DEFAULT_DATA_DIR
+    if not root.exists():
+        _migrate_legacy_data(root)
+    return root
+
+
+def _migrate_legacy_data(root: Path) -> None:
+    """Copy .config/ and .cache/ from the plugin folder (or, for a versioned
+    install, the most recently used sibling version) into root. Copies only,
+    so the old folders stay as a backup."""
+    try:
+        plugin_root = find_plugin_root()
+    except FileNotFoundError:
+        return
+    candidates = [plugin_root]
+    if plugin_root.parent.name == PLUGIN_NAME:  # .../<plugin>/<version>/
+        candidates += [p for p in plugin_root.parent.iterdir() if p.is_dir() and p != plugin_root]
+
+    def last_used(folder: Path) -> float:
+        times = [f.stat().st_mtime for old, _ in _LEGACY_DIRS if (folder / old).is_dir()
+                 for f in (folder / old).rglob("*") if f.is_file()]
+        return max(times, default=-1.0)
+
+    used = [(last_used(c), c) for c in candidates]
+    used = [u for u in used if u[0] >= 0]
+    if not used:
+        return
+    source = max(used)[1]
+    for old, new in _LEGACY_DIRS:
+        if (source / old).is_dir():
+            shutil.copytree(source / old, root / new, dirs_exist_ok=True)
+            print(f"[{PLUGIN_NAME}] Copied {source / old} -> {root / new}", file=sys.stderr)
+
 
 def cache_dir() -> Path:
-    return find_plugin_root() / CACHE_SUBDIR
+    return data_root() / CACHE_SUBDIR
 
 
 def cache_path_for_date(run_date: str) -> Path:

@@ -33,7 +33,7 @@ Drafts MOQ, pricing-tier, payment-term, sample-request, and dispute letters to m
 
 ## Step 1: First-run check
 
-Look for `<plugin-root>/.config/the-ecommerce-seller.config.json`. If missing, run onboarding from `../product-description-writer/templates/onboarding.md`. Use `scripts/config_loader.py`.
+Look for `~/.the-ecommerce-seller/config/the-ecommerce-seller.config.json`. If missing, run onboarding from `../product-description-writer/templates/onboarding.md`. Use `scripts/config_loader.py`.
 
 ---
 
@@ -56,7 +56,7 @@ For each supplier, two paths:
 
 ### Path A: Known supplier (from memory cache)
 
-Look up `<plugin-root>/.cache/suppliers/{supplier-id}.json` via `scripts/supplier_memory.py`. The cache holds:
+Look up `~/.the-ecommerce-seller/cache/suppliers/{supplier-id}.json` via `scripts/supplier_memory.py`. The cache holds:
 
 - Company name, contact name, contact role
 - Region (china / india / vietnam / north_america / eu)
@@ -138,7 +138,7 @@ Length targets vary by letter type and region — see `templates/letter-craft.md
 
 ## Step 7: Update supplier memory
 
-After each letter is composed, the skill writes to `<plugin-root>/.cache/suppliers/{supplier-id}.json` via `scripts/supplier_memory.py`:
+After each letter is composed, the skill writes to `~/.the-ecommerce-seller/cache/suppliers/{supplier-id}.json` via `scripts/supplier_memory.py`:
 
 - Add the letter to `letters_sent` (date, type, summary of the ask)
 - Update `current_relationship_stage` if the ask is significant enough to shift it (e.g., a dispute letter may push from "established" to "strained" pending response)

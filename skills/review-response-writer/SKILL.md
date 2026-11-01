@@ -32,7 +32,7 @@ Drafts public-facing replies to 1★–5★ reviews across six platforms. Star-r
 
 ## Step 1: First-run check
 
-Look for `<plugin-root>/.config/the-ecommerce-seller.config.json`. If missing, run onboarding from `../product-description-writer/templates/onboarding.md`. Use `scripts/config_loader.py`.
+Look for `~/.the-ecommerce-seller/config/the-ecommerce-seller.config.json`. If missing, run onboarding from `../product-description-writer/templates/onboarding.md`. Use `scripts/config_loader.py`.
 
 ---
 
@@ -182,7 +182,7 @@ Read `templates/testimonial-mining.md`. From each 4-5★ review (excluding sycop
 - Reads aloud naturally
 - Attributable (named reviewer, verified purchase preferred)
 
-Write to `<plugin-root>/.cache/testimonials/{product-identifier}.json` via `scripts/testimonial_cache.py`. Schema in the script docstring.
+Write to `~/.the-ecommerce-seller/cache/testimonials/{product-identifier}.json` via `scripts/testimonial_cache.py`. Schema in the script docstring.
 
 Downstream consumers: Landing Page Copywriter (testimonial sections), A+ Content Creator (social proof modules), Ad Creative Generator (testimonial-format ads).
 
@@ -194,13 +194,13 @@ Read `templates/objection-mining.md`. From each 1-2★ review (excluding abusive
 - "Took 3 weeks to arrive" → objection: "Shipping is unreliable"
 - "Material felt cheap" → objection: "Doesn't match the premium price point"
 
-Write to `<plugin-root>/.cache/objections/{product-identifier}.json` via `scripts/objection_cache.py`. Schema in the script docstring.
+Write to `~/.the-ecommerce-seller/cache/objections/{product-identifier}.json` via `scripts/objection_cache.py`. Schema in the script docstring.
 
 Downstream consumers: Ad Creative Generator (objection-handling ads), Landing Page Copywriter (FAQ + above-the-fold reassurance), Product Description Writer (proactive spec callouts).
 
 ### Keyword cache enrichment (recurring praise phrases)
 
-When a phrase recurs in 3+ 4-5★ reviews (e.g., "the grip is perfect," "smells exactly like the description"), promote it as a candidate keyword in the existing keywords cache at `<plugin-root>/.cache/keywords/{product-identifier}.json`. Use `scripts/keyword_cache_enricher.py` — it loads the existing artifact (written by skill #2), appends review-mined keywords with a `source: "review-mining"` tag, and re-saves.
+When a phrase recurs in 3+ 4-5★ reviews (e.g., "the grip is perfect," "smells exactly like the description"), promote it as a candidate keyword in the existing keywords cache at `~/.the-ecommerce-seller/cache/keywords/{product-identifier}.json`. Use `scripts/keyword_cache_enricher.py` — it loads the existing artifact (written by skill #2), appends review-mined keywords with a `source: "review-mining"` tag, and re-saves.
 
 This is enrichment, not overwrite. Skill #2's original keywords stay intact.
 
@@ -340,9 +340,9 @@ The skill always produces a complete reply package — connectors enrich.
 - `scripts/config_loader.py` — shared config loader
 - `scripts/render_review_docx.py` — single-review .docx renderer
 - `scripts/render_reviews_xlsx.py` — bulk .xlsx renderer with tier/sentiment breakdown + cache mining summary + systemic issues
-- `scripts/testimonial_cache.py` — writer for `<plugin-root>/.cache/testimonials/{id}.json`
-- `scripts/objection_cache.py` — writer for `<plugin-root>/.cache/objections/{id}.json`
-- `scripts/keyword_cache_enricher.py` — appender for existing `<plugin-root>/.cache/keywords/{id}.json`
+- `scripts/testimonial_cache.py` — writer for `~/.the-ecommerce-seller/cache/testimonials/{id}.json`
+- `scripts/objection_cache.py` — writer for `~/.the-ecommerce-seller/cache/objections/{id}.json`
+- `scripts/keyword_cache_enricher.py` — appender for existing `~/.the-ecommerce-seller/cache/keywords/{id}.json`
 - `examples/single-1star-recovery-example.md`
 - `examples/single-5star-amplify-example.md`
 - `examples/bulk-batch-example.md`

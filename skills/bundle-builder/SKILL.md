@@ -34,7 +34,7 @@ Suggests product bundles using a hybrid engine: Apriori co-purchase mining + cat
 
 ## Step 1: First-run check
 
-Look for `<plugin-root>/.config/the-ecommerce-seller.config.json`. If missing, run onboarding from `../product-description-writer/templates/onboarding.md`. Use `scripts/config_loader.py`.
+Look for `~/.the-ecommerce-seller/config/the-ecommerce-seller.config.json`. If missing, run onboarding from `../product-description-writer/templates/onboarding.md`. Use `scripts/config_loader.py`.
 
 ---
 
@@ -187,7 +187,7 @@ Two name styles per bundle:
 - **Story-led**: "We built this set the way we drink coffee at home — slow, deliberate, and..."
 - **Social-proof-led**: "The pieces our customers reach for together — now at one price."
 
-The Social-proof variant pulls a relevant testimonial from `<plugin-root>/.cache/testimonials/` (written by skill #10). Falls back to brand-voice-only if no testimonial available.
+The Social-proof variant pulls a relevant testimonial from `~/.the-ecommerce-seller/cache/testimonials/` (written by skill #10). Falls back to brand-voice-only if no testimonial available.
 
 ---
 
@@ -196,7 +196,7 @@ The Social-proof variant pulls a relevant testimonial from `<plugin-root>/.cache
 For each finalized bundle, write to:
 
 ```
-<plugin-root>/.cache/bundles/{bundle-slug}.json
+~/.the-ecommerce-seller/cache/bundles/{bundle-slug}.json
 ```
 
 Schema:
@@ -343,7 +343,7 @@ Tell the buyer:
 1. File path (`computer://` link)
 2. Bundle count + distribution by type
 3. Top 3 bundles by composite score (with names + projected savings)
-4. Cache write summary ("N bundles written to .cache/bundles/ — Landing Page Copywriter and Product Description Writer will see these next time you run them")
+4. Cache write summary ("N bundles written to ~/.the-ecommerce-seller/cache/bundles/ — Landing Page Copywriter and Product Description Writer will see these next time you run them")
 5. AOV-lift estimate (if AOV-Lift bundles included)
 6. Suggested next step:
    - "Pick 2-3 highest-scoring bundles to launch first; run Landing Page Copywriter to generate bundle landing pages from the cache"
@@ -393,7 +393,7 @@ The skill always produces bundles — connectors enrich.
 - `templates/pricing-tiers.md` — conservative / standard / aggressive tier math
 - `templates/positioning-copy.md` — name + 3-variant copy patterns
 - `templates/data-requirements.md` — required + optional input schemas
-- `templates/bundle-cache.md` — schema for `<plugin-root>/.cache/bundles/`
+- `templates/bundle-cache.md` — schema for `~/.the-ecommerce-seller/cache/bundles/`
 - `scripts/config_loader.py` — shared config loader
 - `scripts/copurchase_analyzer.py` — Apriori-style market basket analysis
 - `scripts/categorical_complementarity.py` — use-case-based bundle discovery

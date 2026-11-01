@@ -5,7 +5,7 @@ When the forecast identifies SKUs needing reorder within the next 30 days, the s
 ## Cache location
 
 ```
-<plugin-root>/.cache/reorder_triggers/{YYYY-MM-DD}.json
+~/.the-ecommerce-seller/cache/reorder_triggers/{YYYY-MM-DD}.json
 ```
 
 One file per forecast run date. The skill appends new triggers to today's file if multiple forecast runs happen on the same day; otherwise creates a new file.
@@ -92,7 +92,7 @@ Each trigger references its parent forecast run via `forecast_run_id`. If the bu
 
 ## Reading the cache (from skill #11)
 
-When skill #11 starts up, it can scan `.cache/reorder_triggers/`:
+When skill #11 starts up, it can scan `~/.the-ecommerce-seller/cache/reorder_triggers/`:
 
 ```python
 from pathlib import Path
@@ -100,7 +100,7 @@ import json
 
 def get_pending_triggers(plugin_root: Path, days_back: int = 14) -> list[dict]:
     """Read all unconsumed triggers from the last N days."""
-    triggers_dir = plugin_root / ".cache" / "reorder_triggers"
+    triggers_dir = plugin_root / "~/.the-ecommerce-seller/cache" / "reorder_triggers"
     if not triggers_dir.exists():
         return []
     pending = []
@@ -119,7 +119,7 @@ Skill #11 can then prompt the buyer:
 ## Trigger cleanup
 
 The skill auto-prunes old triggers:
-- Consumed triggers older than 90 days are archived to `.cache/reorder_triggers/archive/`
+- Consumed triggers older than 90 days are archived to `~/.the-ecommerce-seller/cache/reorder_triggers/archive/`
 - Unconsumed triggers older than 30 days are flagged for buyer review (likely abandoned or superseded)
 
 ## Multi-supplier triggers
@@ -174,7 +174,7 @@ The cache write is cheap and idempotent — no harm if unused.
 
 ## Trigger audit
 
-Each forecast run writes a summary entry to `.cache/reorder_triggers/audit.log`:
+Each forecast run writes a summary entry to `~/.the-ecommerce-seller/cache/reorder_triggers/audit.log`:
 
 ```
 2026-04-15  full_catalog  12 triggers (1 imminent, 5 urgent, 6 soon)  ${total_value_at_risk}

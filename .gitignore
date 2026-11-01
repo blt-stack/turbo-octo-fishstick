@@ -1,6 +1,6 @@
 __pycache__/
 *.pyc
 .DS_Store
-# Per-store runtime data written by the skills (store config, API keys, supplier/influencer memory)
+# Legacy in-plugin data folders from 0.15.0 and earlier (data now lives in ~/.the-ecommerce-seller)
 .config/
 .cache/

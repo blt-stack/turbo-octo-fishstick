@@ -12,7 +12,7 @@
       "name": "the-ecommerce-seller",
       "source": "./",
       "description": "A persona plugin for solo e-commerce operators running Shopify, Amazon, Etsy, eBay, Walmart, or TikTok Shop stores. 15 skills covering listings, copy, ads, email, customer service, supplier negotiation, inventory forecasting, bundles, influencer outreach, and daily operational digests.",
-      "version": "0.15.0",
+      "version": "0.16.0",
       "category": "productivity"
     }
   ]

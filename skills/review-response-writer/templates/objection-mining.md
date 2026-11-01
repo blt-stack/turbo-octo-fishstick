@@ -164,7 +164,7 @@ OBJECTION MINING
   Novel objections (new patterns):           2
   Emerging objections (2-3 prior):           1
   Systemic objections (4+):                  1 ← "Shipping reliability via UPS Memphis"
-  Cache file:                                <plugin-root>/.cache/objections/river-stone-pour-over.json
+  Cache file:                                ~/.the-ecommerce-seller/cache/objections/river-stone-pour-over.json
 ```
 
 The systemic objection in this example surfaces in Sheet 4 (Systemic Issues) too — it's both a copy concern and an operational concern.

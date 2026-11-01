@@ -32,7 +32,7 @@ Writes full-page architectures plus copy for PDPs, collection pages, marketing L
 
 ## Step 1: First-run check
 
-Look for the shared plugin config at `<plugin-root>/.config/the-ecommerce-seller.config.json`. If missing or incomplete, run the onboarding flow from `../product-description-writer/templates/onboarding.md`. The config is shared across all skills in this plugin.
+Look for the shared plugin config at `~/.the-ecommerce-seller/config/the-ecommerce-seller.config.json`. If missing or incomplete, run the onboarding flow from `../product-description-writer/templates/onboarding.md`. The config is shared across all skills in this plugin.
 
 Use `scripts/config_loader.py` (identical to the version in skills #1 and #2).
 
@@ -85,7 +85,7 @@ Useful for PDP (infer product details) and About (founder photo informs the narr
 
 After Step 3, before drafting, check the shared cache:
 
-**Path:** `<plugin-root>/.cache/keywords/{product-identifier}.json`
+**Path:** `~/.the-ecommerce-seller/cache/keywords/{product-identifier}.json`
 
 Where `{product-identifier}` matches what the SEO Optimizer would have written:
 1. Shopify product handle (preferred)

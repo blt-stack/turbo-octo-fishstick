@@ -177,4 +177,4 @@ Ordered by estimated impact:
 - Character counts shown inline on every constrained field.
 - Keywords show their source so the buyer knows whether the recommendation is grounded in real autocomplete data or LLM inference alone.
 - The Amazon section flags compliance separately from scoring — title compliance failures suppress listings entirely, not just rank lower.
-- The skill writes `<plugin-root>/.cache/keywords/river-stone-pour-over.json` after this run, so the Product Description Writer auto-picks-up these keywords next time it runs on this product.
+- The skill writes `~/.the-ecommerce-seller/cache/keywords/river-stone-pour-over.json` after this run, so the Product Description Writer auto-picks-up these keywords next time it runs on this product.

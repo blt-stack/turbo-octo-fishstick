@@ -1,5 +1,5 @@
 {
-  "_comment": "Example config for The E-Commerce Seller plugin. This file lives at <plugin-root>/.config/the-ecommerce-seller.config.json after onboarding. Shared across all skills in the plugin. The review_response section is added by the Review Response Writer (skill #10).",
+  "_comment": "Example config for The E-Commerce Seller plugin. This file lives at ~/.the-ecommerce-seller/config/the-ecommerce-seller.config.json after onboarding. Shared across all skills in the plugin. The review_response section is added by the Review Response Writer (skill #10).",
   "version": 1,
   "store": {
     "brand_name": "",

@@ -80,14 +80,14 @@ Confidence: high
 
 ### NEXT STEPS
 1. Stockout will happen before reorder can arrive. Decide: expedite via air freight (reduces transit from 30 days to 7), or accept partial stockout for 57 days.
-2. Trigger written to `<plugin-root>/.cache/reorder_triggers/2026-04-15.json` — Skill #11 (Supplier Negotiation Assistant) will surface this when drafting next supplier letters.
+2. Trigger written to `~/.the-ecommerce-seller/cache/reorder_triggers/2026-04-15.json` — Skill #11 (Supplier Negotiation Assistant) will surface this when drafting next supplier letters.
 3. Plan customer communication if stockout is unavoidable (waitlist signup, expected restock date messaging).
 
 ---
 
 ## Reorder trigger written
 
-To `<plugin-root>/.cache/reorder_triggers/2026-04-15.json`:
+To `~/.the-ecommerce-seller/cache/reorder_triggers/2026-04-15.json`:
 
 ```json
 {

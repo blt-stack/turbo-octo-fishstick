@@ -21,11 +21,11 @@ Forecasts 30/60/90-day inventory needs per SKU. Tiered methods (rolling average 
 1. **First-run check.** Load shared plugin config; trigger onboarding if missing.
 2. **Detect mode.** Single SKU (default for one-product asks) or full-catalog bulk.
 3. **Ingest sales data.** Shopify CSV / Amazon CSV / Etsy CSV / generic CSV — auto-detected by header signature.
-4. **Map SKUs to suppliers.** Read `<plugin-root>/.cache/suppliers/{id}.json` to pull lead times, MOQs, and payment terms per SKU. Ask buyer if a SKU has no mapped supplier yet.
+4. **Map SKUs to suppliers.** Read `~/.the-ecommerce-seller/cache/suppliers/{id}.json` to pull lead times, MOQs, and payment terms per SKU. Ask buyer if a SKU has no mapped supplier yet.
 5. **Pick forecast method per SKU.** Based on history depth + seasonal signal detection.
 6. **Generate forecasts.** 30 / 60 / 90 day demand per SKU with confidence band.
 7. **Compute stockout risk + reorder dates + quantities.** Factor in lead time, MOQ, safety stock, current on-hand.
-8. **Write reorder triggers.** Anything needing reorder in next N days gets logged to `<plugin-root>/.cache/reorder_triggers/{date}.json` for skill #11 to pick up.
+8. **Write reorder triggers.** Anything needing reorder in next N days gets logged to `~/.the-ecommerce-seller/cache/reorder_triggers/{date}.json` for skill #11 to pick up.
 9. **Render output.** Single mode → `.docx`. Bulk mode → `.xlsx` with 5 sheets.
 10. **Report back.** File path, summary statistics, stockout-risk SKU count, reorder triggers written, suggested next step.
 
@@ -33,7 +33,7 @@ Forecasts 30/60/90-day inventory needs per SKU. Tiered methods (rolling average 
 
 ## Step 1: First-run check
 
-Look for `<plugin-root>/.config/the-ecommerce-seller.config.json`. If missing, run onboarding from `../product-description-writer/templates/onboarding.md`. Use `scripts/config_loader.py`.
+Look for `~/.the-ecommerce-seller/config/the-ecommerce-seller.config.json`. If missing, run onboarding from `../product-description-writer/templates/onboarding.md`. Use `scripts/config_loader.py`.
 
 ---
 
@@ -103,8 +103,8 @@ Read `templates/csv-shapes.md` for the full parser logic and auto-detection sign
 
 For each SKU in the sales data, look up the supplier:
 
-1. Check `<plugin-root>/.cache/sku_to_supplier.json` for an existing SKU→supplier mapping
-2. If found, read the supplier file at `<plugin-root>/.cache/suppliers/{supplier-id}.json` and pull:
+1. Check `~/.the-ecommerce-seller/cache/sku_to_supplier.json` for an existing SKU→supplier mapping
+2. If found, read the supplier file at `~/.the-ecommerce-seller/cache/suppliers/{supplier-id}.json` and pull:
    - `lead_time_days` (from supplier profile or per-product override)
    - `current_moq` (per product)
    - `current_unit_price_usd` (per product)
@@ -195,7 +195,7 @@ So the actual *order placement date* depends on when the supplier needs the depo
 For each SKU that needs reorder within the next 30 days, append to:
 
 ```
-<plugin-root>/.cache/reorder_triggers/{YYYY-MM-DD}.json
+~/.the-ecommerce-seller/cache/reorder_triggers/{YYYY-MM-DD}.json
 ```
 
 Where the date is the forecast run date. The trigger file contains:

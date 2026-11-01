@@ -119,7 +119,7 @@ Conversely, buyers can promote a quote the skill skipped by checking the column.
 
 ## Cache size management
 
-The testimonial cache can grow large over time. The cache file at `<plugin-root>/.cache/testimonials/{product-identifier}.json` retains all entries indefinitely, but downstream skills typically request the top N (default 20) by quote_score and recency.
+The testimonial cache can grow large over time. The cache file at `~/.the-ecommerce-seller/cache/testimonials/{product-identifier}.json` retains all entries indefinitely, but downstream skills typically request the top N (default 20) by quote_score and recency.
 
 The cache writer auto-prunes entries marked `do_not_amplify: true` after 30 days to keep file size reasonable.
 
@@ -139,7 +139,7 @@ TESTIMONIAL MINING
   Reviews eligible for mining (4-5★ ok):    14
   Quotes extracted:                          17
   Top quote score:                           92
-  Cache file:                                <plugin-root>/.cache/testimonials/river-stone-pour-over.json
+  Cache file:                                ~/.the-ecommerce-seller/cache/testimonials/river-stone-pour-over.json
 ```
 
 The buyer can audit what flowed downstream before running Landing Page Copywriter or Ad Creative Generator next.

@@ -55,7 +55,7 @@ Without category mapping, the Complementary Category and Gift Set layers degrade
 
 ### 5. Inventory forecast data (from skill #12)
 
-Source: `<plugin-root>/.cache/forecast_runs/{date}/...` or per-SKU diagnostics.
+Source: `~/.the-ecommerce-seller/cache/forecast_runs/{date}/...` or per-SKU diagnostics.
 
 The skill reads:
 - Per-SKU velocity (units/day at P50)
@@ -69,7 +69,7 @@ Used to:
 
 ### 6. Testimonial cache (from skill #10)
 
-Source: `<plugin-root>/.cache/testimonials/{product-identifier}.json`
+Source: `~/.the-ecommerce-seller/cache/testimonials/{product-identifier}.json`
 
 The skill reads pull-quotes for SKUs in each bundle for the social-proof-led copy variant. Without testimonials, that variant falls back to brand-voice-only.
 

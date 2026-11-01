@@ -112,10 +112,10 @@ The buyer can scan for:
 
 ## Bundle cache writes
 
-All 18 bundles written to `<plugin-root>/.cache/bundles/`:
+All 18 bundles written to `~/.the-ecommerce-seller/cache/bundles/`:
 
 ```
-.cache/bundles/
+~/.the-ecommerce-seller/cache/bundles/
   ├── complete-coffee-brewing-set.json
   ├── pour-over-filters.json
   ├── candle-care-set.json

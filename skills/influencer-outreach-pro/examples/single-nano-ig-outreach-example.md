@@ -145,7 +145,7 @@ Note: Standard for Gifted + Instagram
 
 ## Influencer memory cache write
 
-Path: `<plugin-root>/.cache/influencers/maya-brews.json`
+Path: `~/.the-ecommerce-seller/cache/influencers/maya-brews.json`
 
 ```json
 {

@@ -32,7 +32,7 @@ Morning briefing that pulls Shopify + Klaviyo + Meta Ads + GA4 yesterday-data, r
 
 ## Step 1: First-run check
 
-Look for `<plugin-root>/.config/the-ecommerce-seller.config.json`. If missing, run onboarding from `../product-description-writer/templates/onboarding.md`. Use `scripts/config_loader.py`.
+Look for `~/.the-ecommerce-seller/config/the-ecommerce-seller.config.json`. If missing, run onboarding from `../product-description-writer/templates/onboarding.md`. Use `scripts/config_loader.py`.
 
 Verify the buyer has set `daily_store_digest.timezone`. If not, ask before computing "yesterday."
 
@@ -153,26 +153,26 @@ Read `templates/cross-skill-integrations.md`. Implementation in `scripts/cache_r
 
 Four caches to read:
 
-### `<plugin-root>/.cache/reorder_triggers/{date}.json` (skill #12)
+### `~/.the-ecommerce-seller/cache/reorder_triggers/{date}.json` (skill #12)
 
 SKUs the inventory forecaster flagged as approaching stockout. The digest surfaces SKUs with:
 - Stockout date within 14 days → "Reorder this week"
 - Stockout date within 30 days → "Plan reorder this month"
 - Stockout date within 60 days → flagged as context if SKU is also a top mover
 
-### `<plugin-root>/.cache/suppliers/{*}.json` (skill #11)
+### `~/.the-ecommerce-seller/cache/suppliers/{*}.json` (skill #11)
 
 Iterates all supplier files. For each, surfaces `pending_responses` where `follow_up_due <= today`. The digest lists overdue supplier responses with letter type + days overdue.
 
-### `<plugin-root>/.cache/bundles/{*}.json` (skill #13)
+### `~/.the-ecommerce-seller/cache/bundles/{*}.json` (skill #13)
 
 Iterates all bundle files. For bundles not yet marked `deployed: true`, surfaces top 3 by composite score with a suggestion to launch as today's promo angle.
 
-### `<plugin-root>/.cache/influencers/{*}.json` (skill #14)
+### `~/.the-ecommerce-seller/cache/influencers/{*}.json` (skill #14)
 
 Iterates all influencer files. For each, surfaces `pending_responses` where `follow_up_due <= today`. Groups by tier + platform. The digest lists overdue influencer follow-ups with which follow-up variant (A/B/C) is now due.
 
-### Optional: `<plugin-root>/.cache/forecast_runs/` (skill #12)
+### Optional: `~/.the-ecommerce-seller/cache/forecast_runs/` (skill #12)
 
 If a fresh forecast run exists from the last 24 hours, surfaces method audit highlights (which SKUs switched methods, which gained seasonality detection).
 
@@ -337,7 +337,7 @@ Example wrap-up:
 | Klaviyo | Email section blank; skill flags as upgrade path |
 | Meta Ads | Ads section blank; skill flags |
 | GA4 | Traffic + funnel section blank; conversion rate is omitted |
-| Any cache (`.cache/...`) | Section is omitted from the "Needs Attention" queue |
+| Any cache (`~/.the-ecommerce-seller/cache/...`) | Section is omitted from the "Needs Attention" queue |
 
 The skill always produces a digest — connectors enrich the picture.
 

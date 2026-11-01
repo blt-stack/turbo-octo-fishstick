@@ -2,7 +2,7 @@
 
 Every letter drafted by this skill pulls from and writes to a per-supplier JSON cache at:
 ```
-<plugin-root>/.cache/suppliers/{supplier-id}.json
+~/.the-ecommerce-seller/cache/suppliers/{supplier-id}.json
 ```
 
 This cache turns the skill from a letter generator into a relationship-aware CRM. The third email to a supplier reads like a continuing relationship because the skill remembers the prior asks, the supplier's preferences, the relationship stage, and the open negotiations.
@@ -175,7 +175,7 @@ If the buyer writes to a different contact at the same supplier, the skill notes
 
 The supplier memory file is local to the plugin and never sent over the wire. The buyer can:
 
-- Inspect any file directly at `<plugin-root>/.cache/suppliers/`
+- Inspect any file directly at `~/.the-ecommerce-seller/cache/suppliers/`
 - Edit notes manually (the skill respects manual edits)
 - Export the supplier list as a CSV for backup or migration
 - Delete a supplier file (the skill recreates if a new letter is drafted to that supplier)

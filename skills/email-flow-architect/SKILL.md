@@ -30,7 +30,7 @@ Builds Klaviyo-ready email + SMS automation flows. 8 flow types, per-flow email 
 
 ## Step 1: First-run check
 
-Look for `<plugin-root>/.config/the-ecommerce-seller.config.json`. If missing, run onboarding from `../product-description-writer/templates/onboarding.md`. Use `scripts/config_loader.py`.
+Look for `~/.the-ecommerce-seller/config/the-ecommerce-seller.config.json`. If missing, run onboarding from `../product-description-writer/templates/onboarding.md`. Use `scripts/config_loader.py`.
 
 ---
 
@@ -98,13 +98,13 @@ Two shared caches enrich the output:
 
 ### Cache A: Keywords (read-only, from skill #2)
 
-**Path:** `<plugin-root>/.cache/keywords/{product-identifier}.json`
+**Path:** `~/.the-ecommerce-seller/cache/keywords/{product-identifier}.json`
 
 Use `scripts/keyword_cache_reader.py`. Keywords influence subject lines for email flows that mention specific products (Abandoned Cart, Browse Abandonment, Post-Purchase). Subject lines benefit from search-friendly phrasing — "Your [keyword] is waiting" outperforms "Your cart is waiting" for branded-search subscribers.
 
 ### Cache B: UGC hooks (read-only, from shared cache)
 
-**Path:** `<plugin-root>/.cache/ugc_hooks/{product-identifier}.json`
+**Path:** `~/.the-ecommerce-seller/cache/ugc_hooks/{product-identifier}.json`
 
 Use `scripts/ugc_hook_cache.py`. Reads the same hook archetypes used by skills #5 (ads) and #6 (creator briefs). The Welcome flow's hero email and the Abandoned Cart's recovery email can reuse the brand's tested hook angles — coordinating the "problem-aware" or "transformation" angle across ads, creator content, AND email.
 

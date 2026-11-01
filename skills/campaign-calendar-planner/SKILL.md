@@ -31,7 +31,7 @@ Builds a 90-day rolling marketing calendar for one-off promotional campaigns. Sc
 
 ## Step 1: First-run check
 
-Look for `<plugin-root>/.config/the-ecommerce-seller.config.json`. If missing, run onboarding from `../product-description-writer/templates/onboarding.md`. Use `scripts/config_loader.py`.
+Look for `~/.the-ecommerce-seller/config/the-ecommerce-seller.config.json`. If missing, run onboarding from `../product-description-writer/templates/onboarding.md`. Use `scripts/config_loader.py`.
 
 ---
 
@@ -90,13 +90,13 @@ If anything's missing, ask one round of targeted questions before generating.
 
 ### Cache A: Keywords (read-only, from skill #2)
 
-**Path:** `<plugin-root>/.cache/keywords/{product-identifier}.json`
+**Path:** `~/.the-ecommerce-seller/cache/keywords/{product-identifier}.json`
 
 Use `scripts/keyword_cache_reader.py`. For campaigns that reference specific products (product launch, restock, post-launch nurture), keywords influence subject-line and ad-headline copy starters.
 
 ### Cache B: UGC hooks (read-only)
 
-**Path:** `<plugin-root>/.cache/ugc_hooks/{product-identifier}.json`
+**Path:** `~/.the-ecommerce-seller/cache/ugc_hooks/{product-identifier}.json`
 
 Use `scripts/ugc_hook_cache.py`. The 5 archetype hooks (problem-aware, social-proof, transformation, curiosity-gap, contrarian) become copy starters for campaign emails and ads. Coordination across campaigns + automated flows + paid ads + UGC keeps the brand voice unified.
 

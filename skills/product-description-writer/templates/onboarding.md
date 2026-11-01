@@ -1,6 +1,6 @@
 # First-Run Onboarding
 
-The first time any skill in The E-Commerce Seller plugin runs, walk the buyer through this flow. The whole thing should take 2-5 minutes. Save answers to `<plugin-root>/.config/the-ecommerce-seller.config.json` (create the `.config/` folder if it doesn't exist).
+The first time any skill in The E-Commerce Seller plugin runs, walk the buyer through this flow. The whole thing should take 2-5 minutes. Save answers to `~/.the-ecommerce-seller/config/the-ecommerce-seller.config.json` (create the `~/.the-ecommerce-seller/config/` folder if it doesn't exist).
 
 Use the AskUserQuestion tool for multi-choice questions where possible. For free-text answers (brand name, audience, voice examples), ask directly in chat.
 
@@ -128,7 +128,7 @@ If they pick option 1, ask for the key in chat (it'll be saved locally to `confi
 
 ## After onboarding
 
-1. Write the completed config to `<plugin-root>/.config/the-ecommerce-seller.config.json`.
+1. Write the completed config to `~/.the-ecommerce-seller/config/the-ecommerce-seller.config.json`.
 2. Set `brand_voice.last_updated` to today's date.
 3. Tell the buyer:
 

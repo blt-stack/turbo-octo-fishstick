@@ -3,7 +3,7 @@
 Every outreach the skill drafts pulls from + writes to a per-influencer JSON file at:
 
 ```
-<plugin-root>/.cache/influencers/{handle-slug}.json
+~/.the-ecommerce-seller/cache/influencers/{handle-slug}.json
 ```
 
 Where `{handle-slug}` is a filesystem-safe slug from the creator's handle (e.g., `@maya_brews` → `maya-brews`).
@@ -164,7 +164,7 @@ Active outreach attempts awaiting response. Drives follow-up reminders.
 
 When drafting a new outreach to a creator, the skill:
 
-1. Look up `<plugin-root>/.cache/influencers/{handle-slug}.json`
+1. Look up `~/.the-ecommerce-seller/cache/influencers/{handle-slug}.json`
 2. If exists:
    - Pull relationship_stage, history, themes, voice
    - Adjust the outreach (continuing relationship vs. cold)
@@ -250,7 +250,7 @@ The skill addresses both names in the opener when applicable.
 The influencer memory is local-only. The buyer can:
 - Edit notes manually
 - Delete a file to forget a creator
-- Export the `.cache/influencers/` folder for backup
+- Export the `~/.the-ecommerce-seller/cache/influencers/` folder for backup
 - Mark `blacklisted: true` to prevent future outreach
 
 The skill never writes to the file any data not directly provided by the buyer (no API scraping behind the scenes).

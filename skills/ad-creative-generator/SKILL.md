@@ -34,7 +34,7 @@ Writes paid-ad creative across Meta, TikTok, and Google — 5 concepts per run a
 
 ## Step 1: First-run check
 
-Look for `<plugin-root>/.config/the-ecommerce-seller.config.json`. If missing or incomplete, run onboarding from `../product-description-writer/templates/onboarding.md`. Use `scripts/config_loader.py`.
+Look for `~/.the-ecommerce-seller/config/the-ecommerce-seller.config.json`. If missing or incomplete, run onboarding from `../product-description-writer/templates/onboarding.md`. Use `scripts/config_loader.py`.
 
 After loading config, check `config.api_keys.fal_ai`. If present, static image ads will be generated. If not, output Canva briefs and note that adding a Fal key would generate the images directly.
 
@@ -103,7 +103,7 @@ The skill reads from two shared plugin caches:
 
 ### Cache A: UGC hooks cache (bidirectional with skill #6)
 
-**Path:** `<plugin-root>/.cache/ugc_hooks/{product-identifier}.json`
+**Path:** `~/.the-ecommerce-seller/cache/ugc_hooks/{product-identifier}.json`
 
 Use `scripts/ugc_hook_cache.py` (load_hooks function). If skill #6 (UGC Creator Brief Writer) has written hooks for this product, capture them. These hooks were designed for in-video creator delivery — they translate naturally to ad-copy thumbnail overlays and opening caption lines. Coordinating ad-side and creator-side hooks across both skills is a real conversion win for paid+UGC campaigns.
 
@@ -111,7 +111,7 @@ If the cache is empty for this product, the skill generates fresh hooks. After g
 
 ### Cache B: Keywords cache (read-only, from skill #2)
 
-**Path:** `<plugin-root>/.cache/keywords/{product-identifier}.json`
+**Path:** `~/.the-ecommerce-seller/cache/keywords/{product-identifier}.json`
 
 Use `scripts/keyword_cache_reader.py`. Relevant primarily for Google Ads (Search RSAs and PMax keyword themes use these directly). Meta and TikTok ads barely use keywords for targeting — but keyword weaving in copy still helps when shoppers search for the brand later.
 
@@ -221,7 +221,7 @@ Saves these as separate files alongside the `.docx` brief. Buyers paste each CSV
 
 After all 5 concepts are generated, write the ad-side hooks to the shared UGC hooks cache so skill #6 can read them on its next run.
 
-Use `scripts/ugc_hook_cache.py` (save_hooks function). Path: `<plugin-root>/.cache/ugc_hooks/{product-identifier}.json`.
+Use `scripts/ugc_hook_cache.py` (save_hooks function). Path: `~/.the-ecommerce-seller/cache/ugc_hooks/{product-identifier}.json`.
 
 `source` (`ad-creative-generator`) and `context` (`ad_caption`) are stamped automatically, and hooks whose text is already in the cache are skipped, so re-runs don't create duplicates.
 

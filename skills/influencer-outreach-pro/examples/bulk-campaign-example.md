@@ -27,7 +27,7 @@ Budget cap: $4,000 cash + $2,500 product value
 
 For each creator, the skill:
 
-1. Slugifies handle → looks up `<plugin-root>/.cache/influencers/{slug}.json`
+1. Slugifies handle → looks up `~/.the-ecommerce-seller/cache/influencers/{slug}.json`
 2. If known with strained / declined / blacklisted stage → flags + skips
 3. If known with prior healthy collab → routes to "returning creator" outreach template
 4. If new → runs context extraction on the 3 pasted post excerpts

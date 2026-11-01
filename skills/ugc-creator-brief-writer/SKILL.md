@@ -30,7 +30,7 @@ Writes briefs that go to UGC creators before they shoot — covering organic, pa
 
 ## Step 1: First-run check
 
-Look for `<plugin-root>/.config/the-ecommerce-seller.config.json`. If missing or incomplete, run the onboarding flow from `../product-description-writer/templates/onboarding.md`. The config is shared across all skills in this plugin — same brand voice, same audience, same output folder. Use `scripts/config_loader.py`.
+Look for `~/.the-ecommerce-seller/config/the-ecommerce-seller.config.json`. If missing or incomplete, run the onboarding flow from `../product-description-writer/templates/onboarding.md`. The config is shared across all skills in this plugin — same brand voice, same audience, same output folder. Use `scripts/config_loader.py`.
 
 ---
 
@@ -107,7 +107,7 @@ If anything's missing, ask one round of targeted questions before drafting.
 
 Before writing anything, check whether the Ad Creative Generator (or an earlier run of this skill) already saved hooks for this product.
 
-**Path:** `<plugin-root>/.cache/ugc_hooks/{product-identifier}.json`
+**Path:** `~/.the-ecommerce-seller/cache/ugc_hooks/{product-identifier}.json`
 
 Use `scripts/ugc_hook_cache.py`: call `find_hooks_for_product(shopify_handle=..., amazon_asin=..., product_name=...)` with whatever identifiers you have. The product identifier is the Shopify handle when there is one, else the Amazon ASIN, else the slugified product name — use the same identifier when saving in 6c.
 

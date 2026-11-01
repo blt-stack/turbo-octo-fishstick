@@ -5,7 +5,7 @@ The bundles the skill produces are persisted to a shared cache. Downstream skill
 ## Cache location
 
 ```
-<plugin-root>/.cache/bundles/{bundle-slug}.json
+~/.the-ecommerce-seller/cache/bundles/{bundle-slug}.json
 ```
 
 One file per bundle. Bundle slug is derived from the bundle name (descriptive style):
@@ -177,7 +177,7 @@ from pathlib import Path
 import json
 
 def get_active_bundles(plugin_root):
-    cache_dir = plugin_root / ".cache" / "bundles"
+    cache_dir = plugin_root / "~/.the-ecommerce-seller/cache" / "bundles"
     bundles = []
     for path in cache_dir.glob("*.json"):
         with path.open() as f:
@@ -220,9 +220,9 @@ The bundle cache evolves:
 - **New bundles added**: each forecast run can suggest new bundles
 - **Existing bundles updated**: re-running the engine on fresh data can update pricing, testimonials, or evidence
 - **Bundles deactivated**: buyer marks a bundle as inactive; cache retains it for history
-- **Bundles archived**: after N months of inactivity, the skill can archive to `.cache/bundles/archive/`
+- **Bundles archived**: after N months of inactivity, the skill can archive to `~/.the-ecommerce-seller/cache/bundles/archive/`
 
-The skill never auto-deletes bundles. The buyer can manually delete files from `.cache/bundles/` to forget bundles.
+The skill never auto-deletes bundles. The buyer can manually delete files from `~/.the-ecommerce-seller/cache/bundles/` to forget bundles.
 
 ## Bundle conflicts
 
@@ -270,7 +270,7 @@ Future versions of the skill can read older cache files and migrate fields if ne
 [Skill #13 Bundle Builder runs all 3 discovery layers]
         │
         ▼
-[Writes to <plugin-root>/.cache/bundles/{slug}.json per bundle]
+[Writes to ~/.the-ecommerce-seller/cache/bundles/{slug}.json per bundle]
         │
         ├──→ Skill #1 (PDW) reads for bundle PDPs
         ├──→ Skill #3 (LPC) reads for bundle landing pages

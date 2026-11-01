@@ -7,7 +7,7 @@ The forecaster reads the supplier memory cache written by the Supplier Negotiati
 Each SKU needs to know which supplier(s) make it. The mapping lives at:
 
 ```
-<plugin-root>/.cache/sku_to_supplier.json
+~/.the-ecommerce-seller/cache/sku_to_supplier.json
 ```
 
 Schema:
@@ -51,8 +51,8 @@ The mapping is populated:
 The cascade for finding lead time:
 
 1. `sku_to_supplier.json` → `supplier_specific_overrides.lead_time_days` (most specific)
-2. `<plugin-root>/.cache/suppliers/{supplier_id}.json` → `product_lines_sourced[matching product].lead_time_days`
-3. `<plugin-root>/.cache/suppliers/{supplier_id}.json` → supplier-wide default lead time
+2. `~/.the-ecommerce-seller/cache/suppliers/{supplier_id}.json` → `product_lines_sourced[matching product].lead_time_days`
+3. `~/.the-ecommerce-seller/cache/suppliers/{supplier_id}.json` → supplier-wide default lead time
 4. Regional default (China 45 days, Vietnam 40, India 35, NA 14, EU 21)
 5. Buyer prompt — skill asks for lead time before proceeding
 
@@ -85,7 +85,7 @@ Payment terms drive the *deposit date* calculation:
 The skill gracefully degrades:
 
 1. SKU has no `sku_to_supplier.json` entry → prompt buyer for primary supplier
-2. Buyer provides supplier name → skill looks for matching `.cache/suppliers/{slug}.json`
+2. Buyer provides supplier name → skill looks for matching `~/.the-ecommerce-seller/cache/suppliers/{slug}.json`
 3. If supplier file doesn't exist → skill prompts for lead time / MOQ / unit price / payment terms
 4. Auto-creates a stub `sku_to_supplier.json` entry so the next forecast run doesn't re-prompt
 
@@ -146,19 +146,19 @@ Variance feeds back into safety stock calculations. High-variance suppliers warr
 [Skill #12 looks up SKU → supplier via sku_to_supplier.json]
         │
         ▼
-[Skill #12 reads .cache/suppliers/{supplier_id}.json for lead time, MOQ, terms]
+[Skill #12 reads ~/.the-ecommerce-seller/cache/suppliers/{supplier_id}.json for lead time, MOQ, terms]
         │
         ▼
 [Skill #12 computes reorder dates + quantities]
         │
         ▼
-[Skill #12 writes .cache/reorder_triggers/{date}.json]
+[Skill #12 writes ~/.the-ecommerce-seller/cache/reorder_triggers/{date}.json]
         │
         ▼
 [Buyer runs skill #11 next: "what supplier letters do I need to send?"]
         │
         ▼
-[Skill #11 reads .cache/reorder_triggers/, drafts reorder outreach letters]
+[Skill #11 reads ~/.the-ecommerce-seller/cache/reorder_triggers/, drafts reorder outreach letters]
 ```
 
 The two skills compound — the forecaster says when to order; the negotiation assistant drafts the letter to make it happen.
@@ -167,7 +167,7 @@ The two skills compound — the forecaster says when to order; the negotiation a
 
 The skill works fine without skill #11:
 - Reads buyer-provided lead times / MOQs from `sku_to_supplier.json` (entered during onboarding or first forecast)
-- Skips the `.cache/reorder_triggers/` write (or writes them but flags "no downstream consumer found")
+- Skips the `~/.the-ecommerce-seller/cache/reorder_triggers/` write (or writes them but flags "no downstream consumer found")
 - Outputs reorder dates and quantities in the .xlsx for the buyer to act on manually
 
 The integration is opt-in and compounds value; it's not required.

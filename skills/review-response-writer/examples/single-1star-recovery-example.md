@@ -100,7 +100,7 @@ jamie@{{brand_name}}.com  /  direct: [number]
   - "Shipping is unreliable" (category: shipping, frequency_tag: systemic — 5th instance)
   - "CS unreachable when problems happen" (category: customer_service, frequency_tag: emerging — 2nd instance)
 - Keyword phrases enriched: 0
-- Objection cache: `<plugin-root>/.cache/objections/river-stone-pour-over.json`
+- Objection cache: `~/.the-ecommerce-seller/cache/objections/river-stone-pour-over.json`
 
 ---
 

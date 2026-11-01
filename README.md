@@ -89,10 +89,25 @@ The Ad Creative Generator and A+ Content Creator can optionally use a Fal AI API
 
 The first time you trigger any skill, it walks you through a brief onboarding that captures your store info, primary platforms, brand voice, target audience, and a vocabulary blocklist. This setup is shared across skills — answer once, every skill benefits.
 
-Your answers are saved to `.config/the-ecommerce-seller.config.json` in the plugin directory. Skills keep their shared caches (keywords, supplier and influencer memory, reorder triggers and so on) under `.cache/`. Both folders hold your store data, so they are excluded from git.
-
 You can re-run setup any time by saying "redo onboarding", "rerun setup" or "update my brand voice", or by editing the config file directly.
+
+## Where your data lives
+
+Everything the plugin saves lives in one folder in your home directory, **outside** the plugin itself, so it survives plugin updates and reinstalls:
+
+```
+~/.the-ecommerce-seller/
+  config/the-ecommerce-seller.config.json   your setup answers and API keys
+  cache/                                    what the skills learn: keywords, supplier
+                                            and influencer memory, reviews, hooks,
+                                            bundles, reorder triggers
+```
+
+- **Move it** by setting the `THE_ECOMMERCE_SELLER_DATA` environment variable to another folder (for example, a synced Dropbox folder to share between computers).
+- **Back it up** by copying the folder. It holds your store data and API keys, so keep it private.
+- **Upgrading from 0.15.0 or earlier?** Those versions saved data in `.config/` and `.cache/` inside the plugin folder. The first time any skill runs, it copies that data into the new folder automatically and leaves the old copy in place as a backup.
+- **Check the path** with `python skills/product-description-writer/scripts/config_loader.py`.
 
 ## Plugin status
 
-This is v0.15.0. All 15 skills above are included.
+This is v0.16.0. All 15 skills above are included.

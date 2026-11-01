@@ -82,7 +82,7 @@ Character count: 218 (limit: 5000)
 - Objections extracted: 0 (5★ — none expected)
 - Keyword phrases enriched: 1
   - "made by a person" (occurrence 1; not yet at the 3-occurrence promotion threshold but logged)
-- Testimonial cache: `<plugin-root>/.cache/testimonials/river-stone-pour-over-mug.json`
+- Testimonial cache: `~/.the-ecommerce-seller/cache/testimonials/river-stone-pour-over-mug.json`
 
 ---
 
