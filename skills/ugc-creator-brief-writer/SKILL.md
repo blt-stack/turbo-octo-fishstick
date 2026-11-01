@@ -21,7 +21,7 @@ Writes briefs that go to UGC creators before they shoot — covering organic, pa
 3. **Detect brief type.** Organic, paid, or affiliate — based on user language.
 4. **Detect platforms.** Pick from TikTok, Reels, Stories, Shorts. Multiple OK.
 5. **Gather product context.** Shopify pull, paste, URL, or photos.
-6. **Generate hooks.** 10 hooks across 5 angle archetypes, weighted to the product and brand voice.
+6. **Generate hooks.** Read the shared hooks cache first, then write 10 hooks across 5 angle archetypes, weighted to the product and brand voice. Save them back to the cache.
 7. **Build the brief.** Product context, hooks, b-roll shot list, talking points, do's-and-don'ts, FTC + rights language (when paid), deliverables.
 8. **Render output.** Single mode → `.docx` brief. Campaign mode → master `.docx` + per-creator `.docx` files + `.xlsx` hook-assignment workbook.
 9. **Report back.** File paths, brief type detected, hook archetypes used, next step.
@@ -103,6 +103,22 @@ If anything's missing, ask one round of targeted questions before drafting.
 
 ## Step 6: Generate hooks
 
+### 6a. Read the shared hooks cache
+
+Before writing anything, check whether the Ad Creative Generator (or an earlier run of this skill) already saved hooks for this product.
+
+**Path:** `<plugin-root>/.cache/ugc_hooks/{product-identifier}.json`
+
+Use `scripts/ugc_hook_cache.py`: call `find_hooks_for_product(shopify_handle=..., amazon_asin=..., product_name=...)` with whatever identifiers you have. The product identifier is the Shopify handle when there is one, else the Amazon ASIN, else the slugified product name — use the same identifier when saving in 6c.
+
+If hooks exist:
+- **`creator_script` hooks** (from earlier UGC briefs) — reuse the strongest ones when the buyer is running a follow-up wave, so the campaign stays consistent, but don't repeat a hook a creator has already shot.
+- **`ad_caption` hooks** (from the Ad Creative Generator) — these are written for ad captions and thumbnails. Use them as raw material: keep the angle, rewrite each as a spoken line a creator would actually say on camera, and keep it under 8 words for TikTok/Reels. When a paid campaign runs both ads and creator videos, matching the ad hook and the video hook for the same archetype improves message consistency.
+
+Tell the buyer in one line what you found (e.g., "Found 5 ad hooks from your last Ad Creative Generator run — I adapted 3 of them for creators"). If the cache is empty, write fresh hooks — the cache is enrichment, not a requirement.
+
+### 6b. Write the hooks
+
 10 hooks across 5 angle archetypes (2 per archetype). Read `templates/hook-archetypes.md` for full archetype definitions and examples.
 
 The 5 archetypes:
@@ -120,6 +136,23 @@ Hooks should be:
 - Format-appropriate per platform (TikTok hook style ≠ YouTube Shorts hook style)
 
 In campaign mode, the 10 hooks get assigned across creators (via the .xlsx workbook) so no two creators are shooting the same hook.
+
+### 6c. Save the hooks back to the cache
+
+Once the buyer is happy with the hooks, save all 10 so the Ad Creative Generator can reuse the creator-side lines in its video-wrapper ad copy:
+
+```python
+from ugc_hook_cache import save_hooks
+save_hooks(product_identifier, product_name, {
+    "problem_aware": [{"text": "...", "platform": "tiktok"}, ...],
+    "social_proof": [...],
+    "transformation": [...],
+    "curiosity_gap": [...],
+    "contrarian": [...],
+})
+```
+
+`source` (`ugc-creator-brief-writer`) and `context` (`creator_script`) are filled in automatically, hooks already in the cache are skipped, and existing ad-side hooks are kept.
 
 ---
 
@@ -191,7 +224,7 @@ Tell the buyer:
 1. Where the file(s) are (`computer://` links)
 2. Brief type detected and platforms covered
 3. Hook archetypes used + assignment summary (in campaign mode)
-4. One suggested next step (e.g., "Run the Influencer Outreach Pro skill next to draft the DM that gets these creators to say yes" — that skill ships later)
+4. One suggested next step (e.g., "Run the Influencer Outreach Pro skill next to draft the DM that gets these creators to say yes," or "Run the Ad Creative Generator next — it will pick up these hooks for your video ads")
 
 Keep it short.
 
@@ -226,6 +259,7 @@ Keep it short.
 - `templates/ftc-and-rights.md` — FTC disclosure language + usage rights for paid
 - `templates/campaign-mode.md` — multi-creator hook distribution + per-creator personalization
 - `scripts/config_loader.py` — shared config loader
+- `scripts/ugc_hook_cache.py` — shared hooks cache reader/writer (identical copy ships with the Ad Creative Generator, Email Flow Architect and Campaign Calendar Planner)
 - `scripts/render_brief_docx.py` — single + per-creator brief renderer
 - `scripts/render_campaign_xlsx.py` — campaign hook-assignment workbook renderer
 - `examples/single-organic-tiktok-example.md` — reference output, organic TikTok

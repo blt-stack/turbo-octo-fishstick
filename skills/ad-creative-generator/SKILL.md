@@ -223,6 +223,8 @@ After all 5 concepts are generated, write the ad-side hooks to the shared UGC ho
 
 Use `scripts/ugc_hook_cache.py` (save_hooks function). Path: `<plugin-root>/.cache/ugc_hooks/{product-identifier}.json`.
 
+`source` (`ad-creative-generator`) and `context` (`ad_caption`) are stamped automatically, and hooks whose text is already in the cache are skipped, so re-runs don't create duplicates.
+
 The shared file's schema (so both skills can read each other's writes):
 
 ```json

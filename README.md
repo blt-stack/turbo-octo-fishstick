@@ -8,6 +8,23 @@ You run the store. The plugin runs everything else.
 
 This is built for the operator who's wearing every hat — listings, ads, emails, customer service, supplier emails, inventory math, bundle ideas, influencer DMs, the morning numbers check. Fifteen skills cover the work an outsourced agency would charge you four figures a month for, and they all work together using the same brand voice and store data.
 
+## Install
+
+In Claude Code (2.1.275 or later):
+
+```
+/plugin install the-ecommerce-seller --marketplace blt-stack/turbo-octo-fishstick
+```
+
+On older versions, add the marketplace first, then install:
+
+```
+/plugin marketplace add blt-stack/turbo-octo-fishstick
+/plugin install the-ecommerce-seller@blt-stack-plugins
+```
+
+To try it from a local copy without installing: `claude --plugin-dir /path/to/turbo-octo-fishstick`.
+
 ## Who it's for
 
 You sell physical products online. You might be:

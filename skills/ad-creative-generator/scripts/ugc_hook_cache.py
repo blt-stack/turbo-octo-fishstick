@@ -1,18 +1,25 @@
 """
-Bidirectional reader/writer for the shared UGC hooks cache, coordinating
-this skill (Ad Creative Generator) with skill #6 (UGC Creator Brief Writer).
+Shared reader/writer for the UGC hooks cache. The same file ships in every
+skill that touches the cache (Ad Creative Generator, UGC Creator Brief Writer,
+Email Flow Architect, Campaign Calendar Planner) — keep the copies identical.
 
-Either skill can write hooks to the cache; both skills read from it. The
-"context" field on each hook records which side wrote it:
-  - "ad_caption"     — written by Ad Creative Generator (this skill)
-  - "creator_script" — written by UGC Creator Brief Writer (skill #6)
+Ad Creative Generator (#5) and UGC Creator Brief Writer (#6) both write hooks;
+every skill above can read them. The "context" field on each hook records
+which side wrote it:
+  - "ad_caption"     — written by Ad Creative Generator
+  - "creator_script" — written by UGC Creator Brief Writer
+
+save_hooks() stamps "source" with the calling skill's folder name and picks
+the matching default context automatically, so callers rarely need to pass
+either. Hooks whose text already exists in the same archetype are skipped,
+so re-running a skill doesn't pile up duplicates.
 
 When skill #5 reads from the cache, it prefers "creator_script" hooks for
 video-wrapper ad copy (since the creator's actual delivered line matters) and
 falls back to "ad_caption" hooks if no creator_script hooks exist.
 
-When skill #6 reads from the cache (future update to that skill), it prefers
-"creator_script" hooks from its own history and skips "ad_caption" hooks.
+When skill #6 reads from the cache, it reuses its own "creator_script" hooks
+for consistency and adapts "ad_caption" hooks into spoken, on-camera lines.
 
 Path convention:
     <plugin-root>/.cache/ugc_hooks/{product-identifier}.json
@@ -43,6 +50,10 @@ from pathlib import Path
 
 
 CACHE_SUBDIR = ".cache/ugc_hooks"
+
+SKILL_NAME = Path(__file__).resolve().parent.parent.name
+
+CREATOR_SCRIPT_WRITERS = {"ugc-creator-brief-writer"}
 
 ARCHETYPES = (
     "problem_aware",
@@ -81,6 +92,10 @@ def cache_path_for(product_identifier: str) -> Path:
 
 def _now_iso() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def _norm(text: str) -> str:
+    return " ".join(text.lower().split())
 
 
 def _empty_payload(product_identifier: str, product_name: str) -> dict:
@@ -155,7 +170,7 @@ def save_hooks(
     product_identifier: str,
     product_name: str,
     new_hooks: dict[str, list[dict]],
-    source: str = "ad-creative-generator",
+    source: str | None = None,
     merge: bool = True,
 ) -> Path:
     """
@@ -163,7 +178,11 @@ def save_hooks(
 
     new_hooks shape: {archetype_key: [{"text": "...", "context": "...", "platform": "..."}, ...]}
 
-    Each new hook gets "source" and "added_at" auto-stamped if not present.
+    Each new hook gets "source", "context" and "added_at" auto-stamped if not
+    present. source defaults to the calling skill's folder name; context
+    defaults to "creator_script" for the UGC Creator Brief Writer and
+    "ad_caption" for everything else. Hooks whose text (ignoring case and
+    spacing) already exists in that archetype are skipped.
 
     When merge=True (default), new hooks are appended to existing ones from
     other writers (preserving skill #6's writes). When merge=False, the file
@@ -182,15 +201,23 @@ def save_hooks(
     existing["product_name"] = product_name or existing.get("product_name", "")
     existing["last_updated"] = _now_iso()
 
+    source = source or SKILL_NAME
+    default_context = "creator_script" if source in CREATOR_SCRIPT_WRITERS else "ad_caption"
+
     for archetype in ARCHETYPES:
         new_list = new_hooks.get(archetype, []) or []
+        bucket = existing["hooks_by_archetype"].setdefault(archetype, [])
+        seen = {_norm(h.get("text", "")) for h in bucket}
         for hook in new_list:
+            key = _norm(hook.get("text", ""))
+            if not key or key in seen:
+                continue
             hook_copy = dict(hook)
             hook_copy.setdefault("source", source)
             hook_copy.setdefault("added_at", _now_iso())
-            hook_copy.setdefault("context", "ad_caption")
-            existing["hooks_by_archetype"].setdefault(archetype, [])
-            existing["hooks_by_archetype"][archetype].append(hook_copy)
+            hook_copy.setdefault("context", default_context)
+            bucket.append(hook_copy)
+            seen.add(key)
 
     tmp = path.with_suffix(".json.tmp")
     with tmp.open("w", encoding="utf-8") as f:
