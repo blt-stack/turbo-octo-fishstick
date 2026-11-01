@@ -56,7 +56,7 @@ CACHE_SUBDIR = ".cache/testimonials"
 def find_plugin_root(start: Path | None = None) -> Path:
     here = (start or Path(__file__)).resolve()
     for parent in [here, *here.parents]:
-        if (parent / "plugin.json").exists():
+        if (parent / ".claude-plugin" / "plugin.json").exists():
             return parent
     raise FileNotFoundError(
         f"Could not locate plugin root walking up from {here}."

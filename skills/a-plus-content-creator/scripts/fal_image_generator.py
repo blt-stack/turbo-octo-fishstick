@@ -52,10 +52,10 @@ DEFAULT_NEGATIVE = (
 def find_plugin_root(start: Path | None = None) -> Path:
     here = (start or Path(__file__)).resolve()
     for parent in [here, *here.parents]:
-        if (parent / "plugin.json").exists():
+        if (parent / ".claude-plugin" / "plugin.json").exists():
             return parent
     raise FileNotFoundError(
-        "Could not locate plugin root (no plugin.json found walking up from "
+        "Could not locate plugin root (no .claude-plugin/plugin.json found walking up from "
         f"{here})."
     )
 

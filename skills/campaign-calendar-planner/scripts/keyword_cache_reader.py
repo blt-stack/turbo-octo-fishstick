@@ -43,13 +43,13 @@ CACHE_SUBDIR = ".cache/keywords"
 
 
 def find_plugin_root(start: Path | None = None) -> Path:
-    """Walk up from this script until we find a directory containing plugin.json."""
+    """Walk up from this script until we find a directory containing .claude-plugin/plugin.json."""
     here = (start or Path(__file__)).resolve()
     for parent in [here, *here.parents]:
-        if (parent / "plugin.json").exists():
+        if (parent / ".claude-plugin" / "plugin.json").exists():
             return parent
     raise FileNotFoundError(
-        "Could not locate plugin root (no plugin.json found walking up from "
+        "Could not locate plugin root (no .claude-plugin/plugin.json found walking up from "
         f"{here}). The keyword cache reader needs to live inside the plugin tree."
     )
 

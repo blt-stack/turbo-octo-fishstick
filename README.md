@@ -53,21 +53,29 @@ The plugin doesn't assume your niche, your revenue band, or your brand voice. It
 
 The plugin works with any combination of these connectors. Skills check what's connected and fall back to manual input when something isn't available — you always get a result.
 
+Bundled in `.mcp.json` (connect whichever you use):
+
 - **Shopify** (core spine — used by most skills)
 - **Klaviyo** (email + SMS)
-- **Meta Ads** (Facebook + Instagram ads)
-- **Canva** (visual templates)
-- **Amazon** (where MCP support is available)
 - **Gmail** (outreach + customer replies)
+- **Canva** (visual templates)
+- **Supermetrics Marketing Analytics** (marketing data such as Meta Ads and GA4, used by the Daily Store Digest)
 
-The Ad Creative Generator and A+ Content Creator can optionally use a Fal AI API key to generate ad images directly. Without a key they output Canva-ready specs.
+Also used when available:
+
+- **Meta Ads** (Facebook + Instagram ads)
+- **Amazon** (where MCP support is available)
+
+The Ad Creative Generator and A+ Content Creator can optionally use a Fal AI API key to generate ad images directly. Add it to the config under `api_keys.fal_ai`, or set the `FAL_KEY` environment variable. Without a key they output Canva-ready specs.
 
 ## First-run setup
 
 The first time you trigger any skill, it walks you through a brief onboarding that captures your store info, primary platforms, brand voice, target audience, and a vocabulary blocklist. This setup is shared across skills — answer once, every skill benefits.
 
-You can re-run setup any time by typing "rerun e-commerce seller onboarding" or by editing the config file in the plugin directory.
+Your answers are saved to `.config/the-ecommerce-seller.config.json` in the plugin directory. Skills keep their shared caches (keywords, supplier and influencer memory, reorder triggers and so on) under `.cache/`. Both folders hold your store data, so they are excluded from git.
+
+You can re-run setup any time by saying "redo onboarding", "rerun setup" or "update my brand voice", or by editing the config file directly.
 
 ## Plugin status
 
-This is v0.1.0. The Product Description Writer is the first shipped skill. The other 14 skills are scoped and rolling out next.
+This is v0.15.0. All 15 skills above are included.
